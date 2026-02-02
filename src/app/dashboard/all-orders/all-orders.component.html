@@ -1,0 +1,15 @@
+<div class="section">
+    <div class="section-header">
+        <div class="section-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3H17M3 7H17M3 11H17M3 15H17" stroke="#4169E1" stroke-width="2" stroke-linecap="round" />
+            </svg>
+        </div>
+        <h2 class="section-title">All Orders</h2>
+    </div>
+    <div class="section-content">
+        <app-order-card *ngFor="let order of orders" [order]="order" (viewDetails)="onViewDetails($event)">
+        </app-order-card>
+        <p class="empty-state" *ngIf="orders.length === 0">No orders available</p>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="dashboard-container">
+    <app-dashboard-header (industrialViewClick)="onIndustrialViewClick()" (addNewLotClick)="onAddNewLotClick()">
+    </app-dashboard-header>
+
+    <div class="dashboard-content">
+        <!-- Stats Cards -->
+        <div class="stats-grid" *ngIf="stats">
+            <app-stats-card [title]="stats.completedOrders.title" [value]="stats.completedOrders.value"
+                [change]="stats.completedOrders.change" [icon]="stats.completedOrders.icon"
+                [iconColor]="stats.completedOrders.iconColor">
+            </app-stats-card>
+            <app-stats-card [title]="stats.profit.title" [value]="stats.profit.value" [change]="stats.profit.change"
+                [icon]="stats.profit.icon" [iconColor]="stats.profit.iconColor">
+            </app-stats-card>
+            <app-stats-card [title]="stats.revenue.title" [value]="stats.revenue.value" [change]="stats.revenue.change"
+                [icon]="stats.revenue.icon" [iconColor]="stats.revenue.iconColor">
+            </app-stats-card>
+            <app-stats-card [title]="stats.totalWeight.title" [value]="stats.totalWeight.value"
+                [change]="stats.totalWeight.change" [icon]="stats.totalWeight.icon"
+                [iconColor]="stats.totalWeight.iconColor">
+            </app-stats-card>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+            <app-all-orders></app-all-orders>
+            <app-pending-orders></app-pending-orders>
+            <app-delivery-schedule></app-delivery-schedule>
+        </div>
+    </div>
+</div>

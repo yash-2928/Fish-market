@@ -1,0 +1,120 @@
+<div class="register-page">
+    <div class="register-container">
+        <div class="register-header">
+            <h1>Create Account</h1>
+            <p>Please fill in the details to register as a Fisherman</p>
+        </div>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+
+            <!-- Personal Information Section -->
+            <div class="form-section">
+                <h3 class="section-title">Personal Information</h3>
+                <div class="form-grid">
+                    <app-form-input [formGroup]="registerForm" controlName="name" label="Full Name"
+                        placeholder="e.g. John Doe" [required]="true">
+                    </app-form-input>
+
+                    <app-form-input [formGroup]="registerForm" controlName="email" label="Email Address" type="email"
+                        placeholder="john@example.com" [required]="true">
+                    </app-form-input>
+
+                    <app-form-input [formGroup]="registerForm" controlName="phone" label="Phone Number" type="tel"
+                        placeholder="10-15 digits" [required]="true">
+                    </app-form-input>
+
+                    <div class="input-container">
+                        <label>Register As <span class="required">*</span></label>
+                        <select formControlName="role" class="custom-select">
+                            <option value="1">Fisherman</option>
+                            <option value="2">Buyer</option>
+                            <option value="3">Deliveryman</option>
+                        </select>
+                        <div class="error-text"
+                            *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched">
+                            Please select a role
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location Section -->
+            <div class="form-section">
+                <h3 class="section-title">Location Details</h3>
+                <div class="form-grid">
+                    <app-form-input [formGroup]="registerForm" controlName="location" label="City / Village"
+                        placeholder="Where are you located?" [required]="true">
+                    </app-form-input>
+
+                    <div class="full-width">
+                        <div class="input-container">
+                            <label>Detailed Address <span class="required">*</span></label>
+                            <textarea formControlName="address" placeholder="House no, Street, Area..." rows="2"
+                                class="custom-textarea"></textarea>
+                            <div class="error-text"
+                                *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched">
+                                Address is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Identity & Bank Section -->
+            <div class="form-section">
+                <h3 class="section-title">Identity & Banking</h3>
+                <div class="form-grid">
+                    <app-form-input [formGroup]="registerForm" controlName="aadhaar_number" label="Aadhaar Number"
+                        placeholder="12-digit number" [required]="true">
+                    </app-form-input>
+
+                    <app-form-input [formGroup]="registerForm" controlName="bank_account_no" label="Bank Account Number"
+                        placeholder="Your account number" [required]="true">
+                    </app-form-input>
+
+                    <app-form-input [formGroup]="registerForm" controlName="ifsc_code" label="IFSC Code"
+                        placeholder="e.g. SBIN0001234" [required]="true">
+                    </app-form-input>
+                </div>
+            </div>
+
+            <!-- Security Section -->
+            <div class="form-section">
+                <h3 class="section-title">Security</h3>
+                <div class="form-grid">
+                    <app-form-input [formGroup]="registerForm" controlName="password" label="Password" type="password"
+                        placeholder="Min. 6 characters" [required]="true">
+                    </app-form-input>
+
+                    <app-form-input [formGroup]="registerForm" controlName="confirmPassword" label="Confirm Password"
+                        type="password" placeholder="Re-enter password" [required]="true">
+                    </app-form-input>
+                </div>
+                <div class="error-text"
+                    *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword')?.touched">
+                    Passwords do not match
+                </div>
+            </div>
+
+            <!-- Messages -->
+            <div class="form-messages">
+                <div class="alert success" *ngIf="successMessage">
+                    {{ successMessage }}
+                </div>
+                <div class="alert error" *ngIf="errorMessage">
+                    {{ errorMessage }}
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="form-actions">
+                <button type="submit" class="submit-btn" [disabled]="registerForm.invalid">
+                    Register Account
+                </button>
+                <p class="login-link">
+                    Already have an account? <a routerLink="/login">Sign in here</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>

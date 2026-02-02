@@ -1,0 +1,45 @@
+<div class="order-card">
+    <div class="order-header">
+        <div class="order-info">
+            <h3 class="order-id">{{ order.id }}</h3>
+            <p class="order-detail" *ngIf="order.customer">{{ order.customer }}</p>
+            <p class="order-detail" *ngIf="order.location">{{ order.location }}</p>
+            <p class="order-weight">{{ order.weight }} {{ order.weightUnit }}</p>
+            <p class="order-driver" *ngIf="showDeliveryInfo && order.driver">{{ order.driver }}</p>
+        </div>
+        <div class="order-actions">
+            <span class="status-badge" [ngClass]="getStatusClass()">{{ getStatusLabel() }}</span>
+            <button class="btn-icon" (click)="onViewDetails()" *ngIf="!showActions">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M10 4C5 4 1.73 7.11 1 10C1.73 12.89 5 16 10 16C15 16 18.27 12.89 19 10C18.27 7.11 15 4 10 4Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div class="order-footer">
+        <div class="order-meta">
+            <span class="order-price" *ngIf="order.price">${{ order.price }}</span>
+            <span class="order-time" *ngIf="order.timeAgo">{{ order.timeAgo }}</span>
+            <span class="order-time delivery-time" *ngIf="showDeliveryInfo && order.deliveryTime">{{ order.deliveryTime
+                }}</span>
+        </div>
+        <div class="action-buttons" *ngIf="showActions">
+            <button class="btn-accept" (click)="onAccept()">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 8L6 11L13 4" stroke="white" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                Accept
+            </button>
+            <button class="btn-reject" (click)="onReject()">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 4L12 12M4 12L12 4" stroke="white" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                Reject
+            </button>
+        </div>
+    </div>
+</div>

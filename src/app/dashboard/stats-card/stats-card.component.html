@@ -1,0 +1,20 @@
+<div class="stats-card">
+    <div class="stats-icon" [style.background-color]="iconColor + '20'">
+        <span [style.color]="iconColor">{{ icon }}</span>
+    </div>
+    <div class="stats-content">
+        <p class="stats-title">{{ title }}</p>
+        <div class="stats-value-row">
+            <h2 class="stats-value">{{ value }}</h2>
+            <span class="stats-change" [class.positive]="change >= 0" [class.negative]="change < 0">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path *ngIf="change >= 0" d="M6 2L6 10M2 6L6 2L10 6" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path *ngIf="change < 0" d="M6 10L6 2M2 6L6 10L10 6" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                {{ getAbsoluteChange() }}% from last month
+            </span>
+        </div>
+    </div>
+</div>
