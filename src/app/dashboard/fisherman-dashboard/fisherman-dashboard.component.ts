@@ -7,6 +7,7 @@ import { PendingOrdersComponent } from '../pending-orders/pending-orders.compone
 import { DeliveryScheduleComponent } from '../delivery-schedule/delivery-schedule.component';
 import { DashboardService } from '../../services/dashboard.service';
 import { DashboardStats } from '../../models/stats.model';
+import { AddFishLotModalComponent } from '../add-fish-lot-modal/add-fish-lot-modal.component';
 
 @Component({
   selector: 'app-fisherman-dashboard',
@@ -16,13 +17,15 @@ import { DashboardStats } from '../../models/stats.model';
     StatsCardComponent,
     AllOrdersComponent,
     PendingOrdersComponent,
-    DeliveryScheduleComponent
+    DeliveryScheduleComponent,
+    AddFishLotModalComponent
   ],
   templateUrl: './fisherman-dashboard.component.html',
   styleUrl: './fisherman-dashboard.component.css'
 })
 export class FishermanDashboardComponent implements OnInit {
   stats: DashboardStats | null = null;
+  isAddLotModalOpen = false;
 
   constructor(private dashboardService: DashboardService) { }
 
@@ -38,7 +41,25 @@ export class FishermanDashboardComponent implements OnInit {
   }
 
   onAddNewLotClick(): void {
-    console.log('Add New Lot clicked');
-    // Implement navigation or modal logic
+    this.isAddLotModalOpen = true;
+  }
+
+  onCloseAddLotModal(): void {
+    this.isAddLotModalOpen = false;
+  }
+
+  onAddLot(data: any): void {
+    console.log('New lot data:', data);
+    this.dashboardService.createFishLot(data).subscribe({
+      next: (response) => {
+        console.log('Lot created successfully', response);
+        this.isAddLotModalOpen = false;
+        // Optionally refresh stats or list
+      },
+      error: (error) => {
+        console.error('Error creating lot', error);
+        alert('Failed to create lot');
+      }
+    });
   }
 }

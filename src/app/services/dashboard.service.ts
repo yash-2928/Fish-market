@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, catchError } from 'rxjs';
+import { ApiService } from './api.service';
 import { Order, OrderStatus } from '../models/order.model';
 import { DashboardStats } from '../models/stats.model';
 
@@ -8,10 +9,49 @@ import { DashboardStats } from '../models/stats.model';
 })
 export class DashboardService {
 
-    constructor() { }
+    constructor(private apiService: ApiService) { }
 
     getDashboardStats(): Observable<DashboardStats> {
-        const stats: DashboardStats = {
+        return this.apiService.get<DashboardStats>('stats').pipe(
+            catchError(() => {
+                // Fallback to mock data if API fails (for demo purposes) or returning empty
+                console.warn('Failed to fetch stats, using fallback');
+                return of(this.getMockStats());
+            })
+        );
+    }
+
+    getAllOrders(): Observable<Order[]> {
+        return this.apiService.get<Order[]>('orders');
+    }
+
+    getPendingOrders(): Observable<Order[]> {
+        return this.apiService.get<Order[]>('orders/pending');
+    }
+
+    getDeliverySchedule(): Observable<Order[]> {
+        return this.apiService.get<Order[]>('orders/delivery');
+    }
+
+    acceptOrder(orderId: string): Observable<boolean> {
+        return this.apiService.post<boolean>(`orders/${orderId}/accept`, {});
+    }
+
+    rejectOrder(orderId: string): Observable<boolean> {
+        return this.apiService.post<boolean>(`orders/${orderId}/reject`, {});
+    }
+
+    createFishLot(lotData: any): Observable<any> {
+        return this.apiService.post('fish-lots', lotData);
+    }
+
+    viewOrderDetails(orderId: string): void {
+        console.log('Viewing order details:', orderId);
+        // Navigate to details page or open modal
+    }
+
+    private getMockStats(): DashboardStats {
+        return {
             completedOrders: {
                 title: 'Completed Orders',
                 value: 127,
@@ -41,119 +81,5 @@ export class DashboardService {
                 iconColor: '#F59E0B'
             }
         };
-        return of(stats);
-    }
-
-    getAllOrders(): Observable<Order[]> {
-        const orders: Order[] = [
-            {
-                id: 'ORD-001',
-                customer: 'Ocean Fresh Market',
-                weight: 45,
-                weightUnit: 'kg',
-                price: 540,
-                status: OrderStatus.COMPLETED,
-                timeAgo: '2 hours ago'
-            },
-            {
-                id: 'ORD-002',
-                customer: 'Seaside Restaurant',
-                weight: 28,
-                weightUnit: 'kg',
-                price: 520,
-                status: OrderStatus.PROCESSING,
-                timeAgo: '4 hours ago'
-            },
-            {
-                id: 'ORD-003',
-                customer: 'Fish & Co.',
-                weight: 62,
-                weightUnit: 'kg',
-                price: 465,
-                status: OrderStatus.PROCESSING,
-                timeAgo: '6 hours ago'
-            }
-        ];
-        return of(orders);
-    }
-
-    getPendingOrders(): Observable<Order[]> {
-        const orders: Order[] = [
-            {
-                id: 'ORD-006',
-                location: 'Bay Area',
-                weight: 38,
-                weightUnit: 'kg',
-                price: 285,
-                status: OrderStatus.HIGH,
-                timeAgo: '2 hours ago'
-            },
-            {
-                id: 'ORD-007',
-                location: 'Flea Market',
-                weight: 52,
-                weightUnit: 'kg',
-                price: 390,
-                status: OrderStatus.MEDIUM,
-                timeAgo: '4 hours ago'
-            },
-            {
-                id: 'ORD-008',
-                location: 'Harbor Point',
-                weight: 41,
-                weightUnit: 'kg',
-                price: 310,
-                status: OrderStatus.MEDIUM,
-                timeAgo: '5 hours ago'
-            }
-        ];
-        return of(orders);
-    }
-
-    getDeliverySchedule(): Observable<Order[]> {
-        const deliveries: Order[] = [
-            {
-                id: 'DEL-001',
-                location: 'Bay View Restaurant',
-                weight: 35,
-                weightUnit: 'kg',
-                driver: 'Driver: John M.',
-                status: OrderStatus.SCHEDULED,
-                deliveryTime: '10:00 AM'
-            },
-            {
-                id: 'DEL-002',
-                location: 'Sunset Cafe',
-                weight: 47,
-                weightUnit: 'kg',
-                driver: 'Driver: Sarah L.',
-                status: OrderStatus.PROCESSING,
-                deliveryTime: '11:30 AM'
-            },
-            {
-                id: 'DEL-003',
-                location: 'Ocean Breeze',
-                weight: 29,
-                weightUnit: 'kg',
-                driver: 'Driver: Mike R.',
-                status: OrderStatus.SCHEDULED,
-                deliveryTime: '2:00 PM'
-            }
-        ];
-        return of(deliveries);
-    }
-
-    acceptOrder(orderId: string): Observable<boolean> {
-        console.log('Accepting order:', orderId);
-        return of(true);
-    }
-
-    rejectOrder(orderId: string): Observable<boolean> {
-        console.log('Rejecting order:', orderId);
-        return of(true);
-    }
-
-    viewOrderDetails(orderId: string): void {
-        console.log('Viewing order details:', orderId);
     }
 }

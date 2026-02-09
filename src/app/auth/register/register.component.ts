@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { FormInputComponent } from '../../shared/components/form-input/form-input.component';
 
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -23,7 +25,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -63,12 +66,24 @@ export class RegisterComponent implements OnInit {
       const registrationData = this.registerForm.value;
       console.log('Registering Fisherman:', registrationData);
 
-      this.successMessage = 'Registration successful! Redirecting to login...';
-      this.errorMessage = null;
+      this.authService.register(registrationData).subscribe({
+        next: (response) => {
+          console.log('Registration successful:', response);
+          this.successMessage = 'Registration successful! Redirecting to login...';
+          this.errorMessage = null;
 
-      setTimeout(() => {
-        this.router.navigate(['/login']);
-      }, 3000);
+          setTimeout(() => {
+            this.router.navigate(['/auth/login']);
+          }, 3000);
+        },
+        error: (error) => {
+          console.error('Registration failed:', error);
+          this.errorMessage = 'Registration failed. Please try again.';
+          if (error.error && error.error.message) {
+            this.errorMessage = error.error.message;
+          }
+        }
+      });
     } else {
       this.errorMessage = 'Please fix the errors in the form before submitting.';
       this.registerForm.markAllAsTouched();

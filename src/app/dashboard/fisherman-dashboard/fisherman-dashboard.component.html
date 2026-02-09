@@ -28,4 +28,7 @@
             <app-delivery-schedule></app-delivery-schedule>
         </div>
     </div>
+
+    <app-add-fish-lot-modal *ngIf="isAddLotModalOpen" (close)="onCloseAddLotModal()"
+        (addLot)="onAddLot($event)"></app-add-fish-lot-modal>
 </div>

@@ -13,12 +13,12 @@
     </div>
   </div>
   <div class="header-right">
-    <button class="btn-secondary" (click)="onIndustrialViewClick()">
+    <!-- <button class="btn-secondary" (click)="onIndustrialViewClick()">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 4H14M2 8H14M2 12H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       </svg>
       Industrial View
-    </button>
+    </button> -->
     <button class="btn-primary" (click)="onAddNewLotClick()">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M8 2V14M2 8H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -32,5 +32,12 @@
         <path d="M6 18C6 15.791 8.686 14 12 14C15.314 14 18 15.791 18 18" stroke="white" stroke-width="2" stroke-linecap="round"/>
       </svg>
     </div>
+    <button class="btn-secondary logout-btn" (click)="logout()" title="Logout">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
   </div>
 </header>
