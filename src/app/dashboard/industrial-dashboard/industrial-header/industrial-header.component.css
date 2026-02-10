@@ -1,13 +1,16 @@
-.dashboard-header {
+.industrial-header {
+    background-color: #1E293B;
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #0F172A;
-    color: white;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 50;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .header-left {
@@ -41,115 +44,123 @@
     gap: 1rem;
 }
 
-.btn-primary,
-.btn-secondary {
+.nav-links {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.nav-bg-btn {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #CBD5E1;
     padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    border-radius: 0.375rem;
     font-size: 0.875rem;
-    font-weight: 500;
+    text-decoration: none;
     cursor: pointer;
     transition: all 0.2s;
-    border: none;
 }
 
-.btn-primary {
-    background-color: #3B82F6;
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: #2563EB;
-}
-
-.btn-secondary {
+.nav-bg-btn:hover {
     background-color: rgba(255, 255, 255, 0.1);
     color: white;
 }
 
-.btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+.nav-bg-btn.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.cart-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: white;
+    color: #0F172A;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.cart-btn:hover {
+    background-color: #F8FAFC;
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #EF4444;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .user-profile-container {
     position: relative;
     cursor: pointer;
+    margin-left: 0.5rem;
 }
 
 .user-avatar {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
+    background-color: white;
+    color: #0F172A;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s;
-}
-
-.user-profile-container:hover .user-avatar {
-    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    font-size: 0.875rem;
 }
 
 .user-dropdown {
     position: absolute;
     top: 100%;
     right: 0;
-    margin-top: 0.5rem;
-    width: 250px;
+    margin-top: 0.75rem;
+    width: 200px;
     background-color: white;
     border-radius: 0.5rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    animation: slideDown 0.2s ease-out;
+    z-index: 50;
     color: #1E293B;
-    z-index: 100;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .dropdown-header {
     padding: 1rem;
-    background-color: #F8FAFC;
     border-bottom: 1px solid #E2E8F0;
 }
 
 .user-name {
     font-weight: 600;
     font-size: 0.875rem;
-    color: #0F172A;
 }
 
 .user-email {
     font-size: 0.75rem;
     color: #64748B;
-    margin-top: 0.25rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.dropdown-divider {
-    height: 1px;
-    background-color: #E2E8F0;
 }
 
 .dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    display: block;
     width: 100%;
     padding: 0.75rem 1rem;
     text-align: left;
@@ -158,7 +169,6 @@
     font-size: 0.875rem;
     color: #475569;
     cursor: pointer;
-    transition: all 0.2s;
 }
 
 .dropdown-item:hover {
@@ -166,19 +176,10 @@
     color: #0F172A;
 }
 
-.dropdown-item svg {
-    color: #64748B;
-}
-
-.dropdown-item:hover svg {
-    color: #3B82F6;
+.logout-item {
+    color: #EF4444;
 }
 
 .logout-item:hover {
     background-color: #FEF2F2;
-    color: #EF4444;
-}
-
-.logout-item:hover svg {
-    color: #EF4444;
 }

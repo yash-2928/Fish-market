@@ -1,0 +1,243 @@
+<div class="details-container">
+    <div class="page-header">
+        <button class="back-btn" (click)="goBack()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </button>
+        <div class="header-text">
+            <h2>{{order.id}}</h2>
+            <p>Placed on {{order.date}}</p>
+        </div>
+        <div class="status-badge badge-warning">{{order.status}}</div>
+    </div>
+
+    <div class="content-grid">
+        <div class="left-column">
+            <!-- Fish Lot Details -->
+            <div class="card">
+                <div class="card-header">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <h3>Fish Lot Details</h3>
+                </div>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <label>Fish Type</label>
+                        <span>{{order.fishType}}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Quality Grade</label>
+                        <span>{{order.quality}}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Weight</label>
+                        <span>{{order.weight}}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Catch Date</label>
+                        <span>{{order.catchDate}}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Catch Location</label>
+                        <span>{{order.location}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fisherman Details -->
+            <div class="card">
+                <div class="card-header">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <h3>Fisherman Details</h3>
+                </div>
+                <div class="fisherman-profile">
+                    <div class="avatar">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="info">
+                        <h4>{{order.fisherman.name}}</h4>
+                        <p>{{order.fisherman.phone}}</p>
+                        <p class="location">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            {{order.fisherman.location}}
+                        </p>
+                        <div class="rating">
+                            Rating:
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            {{order.fisherman.rating}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delivery Tracking -->
+            <div class="card">
+                <div class="card-header">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 16V6C13 5.44772 12.5523 5 12 5H5C4.44772 5 4 5.44772 4 6V11" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M13 11H17.4142C17.6794 11 17.9338 11.1054 18.1213 11.2929L20.7071 13.8787C20.8946 14.0662 21 14.3206 21 14.5858V16"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M4 16H6M10 16H15M19 16H21" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="8" cy="16" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <circle cx="17" cy="16" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <h3>Delivery Tracking</h3>
+                </div>
+
+                <div class="tracking-stepper">
+                    <div class="step"
+                        [ngClass]="{'active': order.tracking.step >= 1, 'completed': order.tracking.step > 1}">
+                        <div class="step-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M22 4L12 14.01L9 11.01" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <label>Assigned</label>
+                    </div>
+                    <div class="step-line" [ngClass]="{'active': order.tracking.step > 1}"></div>
+                    <div class="step"
+                        [ngClass]="{'active': order.tracking.step >= 2, 'completed': order.tracking.step > 2}">
+                        <div class="step-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="7" width="20" height="15" rx="2" ry="2" stroke="currentColor"
+                                    stroke-width="2" />
+                                <polyline points="17 2 12 7 7 2" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <label>In Transit</label>
+                    </div>
+                    <div class="step-line" [ngClass]="{'active': order.tracking.step > 2}"></div>
+                    <div class="step"
+                        [ngClass]="{'active': order.tracking.step >= 3, 'completed': order.tracking.step > 3}">
+                        <div class="step-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <label>Delivered</label>
+                    </div>
+                </div>
+
+                <div class="map-placeholder">
+                    <div class="map-content">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
+                                stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <circle cx="12" cy="10" r="3" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <p class="live-status">Live Map</p>
+                        <p class="eta">Highway 101, 15 km away<br>ETA: {{order.tracking.eta}}</p>
+                    </div>
+                </div>
+
+                <div class="driver-info">
+                    <div class="driver-detail">
+                        <label>Driver</label>
+                        <span>{{order.tracking.driver}}</span>
+                    </div>
+                    <div class="driver-detail">
+                        <label>Driver Phone</label>
+                        <span>{{order.tracking.driverPhone}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <!-- Price Breakdown -->
+            <div class="card">
+                <div class="card-header">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 1V23" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path
+                            d="M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3688 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <h3>Price Breakdown</h3>
+                </div>
+                <div class="price-rows">
+                    <div class="price-row">
+                        <span>Fish Price</span>
+                        <span>${{order.pricing.fishPrice.toFixed(2)}}</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Delivery Charge</span>
+                        <span>${{order.pricing.deliveryCharge.toFixed(2)}}</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Platform Fee</span>
+                        <span>${{order.pricing.platformFee.toFixed(2)}}</span>
+                    </div>
+                    <div class="price-row total">
+                        <span>Total</span>
+                        <span>${{order.pricing.total.toFixed(2)}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Payment</h3>
+                </div>
+                <div class="payment-info">
+                    <div class="payment-row">
+                        <span>Advance Paid</span>
+                        <span class="text-green">${{order.payment.advancePaid.toFixed(2)}}</span>
+                    </div>
+                    <div class="payment-row">
+                        <span>Remaining</span>
+                        <span class="text-orange">${{order.payment.remaining.toFixed(2)}}</span>
+                    </div>
+                </div>
+                <button class="pay-btn" (click)="payRemaining()">
+                    Pay Remaining ${{order.payment.remaining.toFixed(2)}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

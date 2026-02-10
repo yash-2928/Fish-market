@@ -1,0 +1,332 @@
+.details-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.back-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid #E2E8F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #64748B;
+    transition: all 0.2s;
+}
+
+.back-btn:hover {
+    background-color: #F8FAFC;
+    color: #334155;
+}
+
+.header-text h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0F172A;
+    margin: 0;
+}
+
+.header-text p {
+    color: #64748B;
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.status-badge {
+    margin-left: auto;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.badge-warning {
+    background-color: #FEF3C7;
+    color: #92400E;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: #334155;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0F172A;
+}
+
+/* Details Grid */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1.5rem;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.detail-item label {
+    font-size: 0.75rem;
+    color: #64748B;
+}
+
+.detail-item span {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #0F172A;
+}
+
+/* Fisherman Profile */
+.fisherman-profile {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    background-color: #F8FAFC;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CBD5E1;
+}
+
+.info h4 {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0F172A;
+}
+
+.info p {
+    margin: 0.25rem 0;
+    font-size: 0.875rem;
+    color: #64748B;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    color: #0F172A;
+    font-weight: 500;
+}
+
+/* Tracking */
+.tracking-stepper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.step-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid #E2E8F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CBD5E1;
+    transition: all 0.3s;
+}
+
+.step.active .step-icon {
+    border-color: #10B981;
+    color: #10B981;
+}
+
+.step.completed .step-icon {
+    background-color: #10B981;
+    border-color: #10B981;
+    color: white;
+}
+
+.step label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #64748B;
+}
+
+.step.active label {
+    color: #0F172A;
+}
+
+.step-line {
+    flex: 1;
+    height: 2px;
+    background-color: #E2E8F0;
+    margin: 0 -10px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.step-line.active {
+    background-color: #10B981;
+}
+
+.map-placeholder {
+    height: 200px;
+    background-color: #F1F5F9;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.live-status {
+    font-weight: 600;
+    color: #0F172A;
+    margin-bottom: 0.5rem;
+}
+
+.eta {
+    font-size: 0.75rem;
+    color: #64748B;
+}
+
+.driver-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.driver-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.driver-detail label {
+    font-size: 0.75rem;
+    color: #64748B;
+}
+
+.driver-detail span {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #0F172A;
+}
+
+/* Price & Payment */
+.price-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: #475569;
+}
+
+.price-row.total {
+    border-top: 1px solid #E2E8F0;
+    padding-top: 1rem;
+    font-weight: 600;
+    color: #0F172A;
+    font-size: 1rem;
+}
+
+.payment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.payment-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.text-green {
+    color: #10B981;
+}
+
+.text-orange {
+    color: #F97316;
+}
+
+.pay-btn {
+    width: 100%;
+    background-color: #1E293B;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.pay-btn:hover {
+    background-color: #0F172A;
+}

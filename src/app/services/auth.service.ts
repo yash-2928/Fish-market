@@ -26,13 +26,13 @@ export class AuthService {
     }
 
     register(userData: any): Observable<any> {
-        return this.apiService.post('auth/register', userData);
+        return this.apiService.post('users', userData);
     }
 
     logout(): void {
         localStorage.removeItem(this.TOKEN_KEY);
         localStorage.removeItem(this.USER_KEY);
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['/login']);
     }
 
     isAuthenticated(): boolean {

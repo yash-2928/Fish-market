@@ -1,0 +1,143 @@
+<div class="home-container">
+    <!-- Stats Row -->
+    <div class="stats-grid">
+        <div class="stat-card" *ngFor="let stat of stats">
+            <div class="stat-content">
+                <p class="stat-label">{{stat.label}}</p>
+                <h3 class="stat-value">{{stat.value}}</h3>
+                <p class="stat-subtext">{{stat.subtext}}</p>
+                <p class="stat-trend" [ngClass]="{'trend-up': stat.trendUp, 'trend-down': !stat.trendUp}">
+                    <span *ngIf="stat.trendUp && stat.label !== 'Pending Payments'">↗</span>
+                    {{stat.trend}}
+                </p>
+            </div>
+            <div class="stat-icon" [ngClass]="stat.colorClass">
+                <ng-container [ngSwitch]="stat.iconType">
+                    <svg *ngSwitchCase="'orders'" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <svg *ngSwitchCase="'truck'" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 16V6C13 5.44772 12.5523 5 12 5H5C4.44772 5 4 5.44772 4 6V11" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M13 11H17.4142C17.6794 11 17.9338 11.1054 18.1213 11.2929L20.7071 13.8787C20.8946 14.0662 21 14.3206 21 14.5858V16"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M4 16H6M10 16H15M19 16H21" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="8" cy="16" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <circle cx="17" cy="16" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <svg *ngSwitchCase="'dollar'" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 1V23" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path
+                            d="M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3688 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <svg *ngSwitchCase="'clock'" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions Row -->
+    <div class="actions-grid">
+        <button class="action-card" (click)="navigateToOrders()">
+            <div class="action-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15M9 5C9 6.10457 9.89543 7 11 7H13C14.1046 7 15 6.10457 15 5M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M9 14H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <span>View All Orders</span>
+        </button>
+        <button class="action-card" (click)="navigateToCatalog()">
+            <div class="action-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13C6.44772 13 6 13.4477 6 14C6 14.5523 6.44772 15 7 15H19M7 18C6.44772 18 6 18.4477 6 19C6 19.5523 6.44772 20 7 20C7.55228 20 8 19.5523 8 19C8 18.4477 7.55228 18 7 18ZM17 18C16.4477 18 16 18.4477 16 19C16 19.5523 16.4477 20 17 20C17.5523 20 18 19.5523 18 19C18 18.4477 17.5523 18 17 18Z"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+            <span>Browse Catalog</span>
+        </button>
+        <button class="action-card">
+            <div class="action-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 16V6C13 5.44772 12.5523 5 12 5H5C4.44772 5 4 5.44772 4 6V11" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M13 11H17.4142C17.6794 11 17.9338 11.1054 18.1213 11.2929L20.7071 13.8787C20.8946 14.0662 21 14.3206 21 14.5858V16"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M4 16H6M10 16H15M19 16H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="8" cy="16" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="17" cy="16" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <span>Delivery Tracker</span>
+        </button>
+    </div>
+
+    <!-- Recent Orders Section -->
+    <div class="recent-orders-section">
+        <div class="section-header">
+            <h3>Recent Orders</h3>
+            <button class="view-all-btn" (click)="navigateToOrders()">
+                View all
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="orders-list">
+            <div class="order-item" *ngFor="let order of recentOrders">
+                <div class="order-info">
+                    <div class="order-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="order-details">
+                        <span class="order-id">{{order.id}}</span>
+                        <span class="order-desc">{{order.items}}</span>
+                    </div>
+                </div>
+
+                <div class="order-meta">
+                    <div class="order-price">{{order.price}}</div>
+                    <div class="badge" [ngClass]="getPaymentStatusClass(order.paymentStatus)">{{order.paymentStatus}}
+                    </div>
+                    <div class="badge" [ngClass]="getDeliveryStatusClass(order.deliveryStatus)">{{order.deliveryStatus}}
+                    </div>
+                    <button class="action-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
