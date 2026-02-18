@@ -36,7 +36,18 @@ export class AddFishLotModalComponent {
 
   onSubmit(): void {
     if (this.lotForm.valid) {
-      this.addLot.emit(this.lotForm.value);
+      const data = {
+        fisherman_id: 1,
+        fish_type: this.lotForm.value.fishType,
+        qualityGrade  : this.lotForm.value.qualityGrade,
+        weight_kg: this.lotForm.value.weight,
+        price_per_kg: this.lotForm.value.price,
+        catchDate: this.lotForm.value.catchDate,
+        catchLocation: this.lotForm.value.catchLocation,
+        notes: this.lotForm.value.notes,
+        status: 'available'
+      }
+      this.addLot.emit(data);
       this.close.emit();
     } else {
         this.lotForm.markAllAsTouched();

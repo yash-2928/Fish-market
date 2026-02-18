@@ -54,7 +54,11 @@ export class FishermanDashboardComponent implements OnInit {
       next: (response) => {
         console.log('Lot created successfully', response);
         this.isAddLotModalOpen = false;
+        //show success message
+        alert('Lot created successfully');
+
         // Optionally refresh stats or list
+        
       },
       error: (error) => {
         console.error('Error creating lot', error);

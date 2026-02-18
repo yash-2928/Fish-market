@@ -21,8 +21,10 @@ export class LoginComponent {
     private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      // email: ['', [Validators.required, Validators.email]],
+      // password: ['', [Validators.required, Validators.minLength(6)]],
+      email: [''],
+      password: [''],
       rememberMe: [false]
     });
   }
@@ -30,7 +32,8 @@ export class LoginComponent {
   onSubmit(): void {
     if (this.loginForm.valid) {
       console.log('Login submitted:', this.loginForm.value);
-      this.authService.login(this.loginForm.value).subscribe({
+      const data = {username: this.loginForm.value.email, password: this.loginForm.value.password}
+      this.authService.login(data).subscribe({
         next: (response) => {
           console.log('Login successful', response);
           this.router.navigate(['/dashboard']);
