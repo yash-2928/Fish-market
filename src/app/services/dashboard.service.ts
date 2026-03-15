@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, catchError } from 'rxjs';
+import { Observable, of, catchError, map } from 'rxjs';
 import { ApiService } from './api.service';
 import { Order, OrderStatus } from '../models/order.model';
-import { DashboardStats } from '../models/stats.model';
+import { DashboardStats, StatsApiResponse } from '../models/stats.model';
 
 @Injectable({
     providedIn: 'root'
@@ -12,9 +12,9 @@ export class DashboardService {
     constructor(private apiService: ApiService) { }
 
     getDashboardStats(): Observable<DashboardStats> {
-        return this.apiService.get<DashboardStats>('stats').pipe(
+        return this.apiService.get<StatsApiResponse>('stats').pipe(
+            map(raw => this.mapStatsResponse(raw)),
             catchError(() => {
-                // Fallback to mock data if API fails (for demo purposes) or returning empty
                 console.warn('Failed to fetch stats, using fallback');
                 return of(this.getMockStats());
             })
@@ -47,39 +47,51 @@ export class DashboardService {
 
     viewOrderDetails(orderId: string): void {
         console.log('Viewing order details:', orderId);
-        // Navigate to details page or open modal
     }
 
-    private getMockStats(): DashboardStats {
+    private mapStatsResponse(raw: StatsApiResponse): DashboardStats {
         return {
             completedOrders: {
                 title: 'Completed Orders',
-                value: 127,
-                change: 15,
+                value: raw.completedOrders,
+                change: raw.completedOrdersChange,
                 icon: '✓',
                 iconColor: '#10B981'
             },
             profit: {
                 title: 'Profit',
-                value: '$24,580',
-                change: 8,
+                value: `₹${raw.profit.toLocaleString()}`,
+                change: raw.profitChange,
                 icon: '📈',
                 iconColor: '#3B82F6'
             },
             revenue: {
                 title: 'Revenue',
-                value: '$89,340',
-                change: 12,
+                value: `₹${raw.revenue.toLocaleString()}`,
+                change: raw.revenueChange,
                 icon: '💰',
                 iconColor: '#8B5CF6'
             },
             totalWeight: {
                 title: 'Total Weight Delivered',
-                value: '2,845 kg',
-                change: 20,
+                value: `${raw.totalWeight.toLocaleString()} kg`,
+                change: raw.totalWeightChange,
                 icon: '⚖️',
                 iconColor: '#F59E0B'
             }
         };
+    }
+
+    private getMockStats(): DashboardStats {
+        return this.mapStatsResponse({
+            completedOrders: 127,
+            completedOrdersChange: 15,
+            profit: 24580,
+            profitChange: 8,
+            revenue: 89340,
+            revenueChange: 12,
+            totalWeight: 2845,
+            totalWeightChange: 20
+        });
     }
 }
